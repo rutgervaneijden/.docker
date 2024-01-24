@@ -1,6 +1,7 @@
 docker stop jellyfin
 docker system prune --all --force
-docker pull jellyfin/jellyfin
+docker image pull jellyfin/jellyfin
+docker network create jellyfin
 docker run \
   --detach \
   --name jellyfin \
