@@ -1,0 +1,12 @@
+docker stop jellyfin
+docker system prune --all --force
+docker pull jellyfin/jellyfin
+docker run \
+  --detach \
+  --name jellyfin \
+  --network jellyfin \
+  --publish 8010:8096 \
+  --restart unless-stopped \
+  --volume jellyfin-config:/config \
+  --volume jellyfin-cache:/cache \
+  jellyfin/jellyfin
