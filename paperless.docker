@@ -1,0 +1,44 @@
+docker container stop paperless
+docker container stop paperless-postgres
+docker container stop paperless-redis
+docker system prune --all --force
+
+docker image pull ghcr.io/paperless-ngx/paperless-ngx
+docker image pull postgres
+docker image pull redis
+
+docker network create paperless
+
+docker run \
+  --detach \
+  --env POSTGRES_DB=paperless \
+  --env POSTGRES_USER=paperless \
+  --env POSTGRES_PASSWORD=paperless \
+  --name paperless-postgres \
+  --network paperless \
+  --restart unless-stopped \
+  --volume paperless-postgres-data:/var/lib/postgresql/data \
+  postgres
+
+docker run \
+  --detach \
+  --name paperless-redis \
+  --network paperless \
+  --restart unless-stopped \
+  --volume paperless-redis-data:/data \
+  redis
+
+docker run \
+  --detach \
+  --env PAPERLESS_DBHOST=paperless-postgres \
+  --env PAPERLESS_OCR_LANGUAGES=nld \
+  --env PAPERLESS_REDIS=redis://paperless-redis \
+  --name paperless \
+  --network paperless \
+  --publish 8011:8000 \
+  --restart unless-stopped \
+  --volume paperless-data:/usr/src/paperless/data \
+  --volume paperless-media:/usr/src/paperless/media \
+  --volume paperless-export:/usr/src/paperless/export \
+  --volume paperless-consume:/usr/src/paperless/consume \
+  ghcr.io/paperless-ngx/paperless-ngx
