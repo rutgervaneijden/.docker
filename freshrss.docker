@@ -1,18 +1,17 @@
 docker container stop freshrss
 docker container stop freshrss-postgres
-docker container prune --force
+docker system prune --all --force
 
 docker image pull freshrss/freshrss
 docker image pull postgres
 
-docker network prune --force
 docker network create freshrss
 
 docker run \
   --detach \
-  --env 'POSTGRES_DB=freshrss' \
-  --env 'POSTGRES_USER=freshrss' \
-  --env 'POSTGRES_PASSWORD=freshrss' \
+  --env POSTGRES_DB=freshrss \
+  --env POSTGRES_USER=freshrss \
+  --env POSTGRES_PASSWORD=freshrss \
   --log-opt max-size=10m \
   --name freshrss-postgres \
   --network freshrss \
@@ -22,8 +21,8 @@ docker run \
 
 docker run \
   --detach \
-  --env 'TZ=Europe/Amsterdam' \
-  --env 'CRON_MIN=1,31' \
+  --env TZ=Europe/Amsterdam \
+  --env CRON_MIN=1,31 \
   --log-opt max-size=10m \
   --name freshrss \
   --network freshrss \
