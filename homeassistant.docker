@@ -1,3 +1,8 @@
+docker container stop homeassistant
+docker system prune --all --force
+
+docker image pull ghcr.io/home-assistant/home-assistant
+
 docker run \
   --detach \
   --env TZ=Europe/Brussels \
@@ -7,4 +12,4 @@ docker run \
   --restart unless-stopped \
   --volume homeassistant-config:/config \
   --volume /run/dbus:/run/dbus:ro \
-  ghcr.io/home-assistant/home-assistant:stable
+  ghcr.io/home-assistant/home-assistant
