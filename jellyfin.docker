@@ -7,7 +7,7 @@ docker network create jellyfin
 
 docker run \
   --detach \
-  --mount type=bind,source=/srv/mediatheek,target=/media,readonly \
+  --mount type=bind,source=/media/hdd0/Mediatheek,target=/media,readonly \
   --name jellyfin \
   --network jellyfin \
   --publish 8012:8096 \
