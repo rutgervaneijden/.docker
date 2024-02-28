@@ -2,9 +2,9 @@ docker run \
   --detach \
   --env TZ=Europe/Brussels \
   --name homeassistant \
+  --network host \
   --privileged \
-  --restart=unless-stopped \
+  --restart unless-stopped \
   --volume homeassistant-config:/config \
   --volume /run/dbus:/run/dbus:ro \
-  --network=host \
   ghcr.io/home-assistant/home-assistant:stable
