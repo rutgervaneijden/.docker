@@ -1,8 +1,9 @@
-docker run -d \
+docker run \
+  --detach \
+  --env TZ=Europe/Brussels \
   --name homeassistant \
   --privileged \
   --restart=unless-stopped \
-  -e TZ=MY_TIME_ZONE \
   --volume homeassistant-config:/config \
   --volume /run/dbus:/run/dbus:ro \
   --network=host \
