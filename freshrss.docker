@@ -26,7 +26,7 @@ docker run \
   --log-opt max-size=10m \
   --name freshrss \
   --network freshrss \
-  --publish 8010:80 \
+  --publish 8011:80 \
   --restart unless-stopped \
   --volume freshrss-data:/var/www/FreshRSS/data \
   --volume freshrss-extensions:/var/www/FreshRSS/extensions \
