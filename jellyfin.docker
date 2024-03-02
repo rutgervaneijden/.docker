@@ -10,7 +10,7 @@ docker run \
   --mount type=bind,source=/media/hdd0/Mediatheek,target=/media,readonly \
   --name jellyfin \
   --network jellyfin \
-  --publish 8012:8096 \
+  --publish 8010:8096 \
   --restart unless-stopped \
   --volume jellyfin-config:/config \
   --volume jellyfin-cache:/cache \
