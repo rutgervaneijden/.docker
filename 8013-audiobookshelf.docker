@@ -1,0 +1,10 @@
+docker pull ghcr.io/advplyr/audiobookshelf
+
+docker run -d \
+ -p 13378:80 \
+ -v </path/to/config>:/config \
+ -v </path/to/metadata>:/metadata \
+ -v </path/to/audiobooks>:/audiobooks \
+ -v </path/to/podcasts>:/podcasts \
+ --name audiobookshelf \
+ ghcr.io/advplyr/audiobookshelf
