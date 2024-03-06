@@ -21,7 +21,7 @@ docker run \
 
 docker run \
   --detach \
-  --env TZ=Europe/Amsterdam \
+  --env TZ=Europe/Brussels \
   --env CRON_MIN=1,31 \
   --log-opt max-size=10m \
   --name freshrss \
