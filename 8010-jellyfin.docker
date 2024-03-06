@@ -1,17 +1,12 @@
 docker container stop jellyfin
 docker system prune --all --force
-
 docker image pull jellyfin/jellyfin
-
-docker network create jellyfin
-
 docker run \
   --detach \
-  --mount type=bind,source=/media/hdd0/Mediatheek,target=/media,readonly \
   --name jellyfin \
-  --network jellyfin \
   --publish 8010:8096 \
   --restart unless-stopped \
-  --volume jellyfin-config:/config \
   --volume jellyfin-cache:/cache \
+  --volume jellyfin-config:/config \
+  --volume /media/hdd0/Mediatheek:/media \
   jellyfin/jellyfin
