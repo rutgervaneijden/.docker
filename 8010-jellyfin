@@ -10,3 +10,5 @@ docker run \
   --volume jellyfin-config:/config \
   --volume /media/hdd0/Mediatheek:/media \
   jellyfin/jellyfin
+
+#--mount type=bind,source=/media/hdd0/Mediatheek,target=/media,readonly \
