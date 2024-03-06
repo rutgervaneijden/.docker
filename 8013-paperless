@@ -2,13 +2,10 @@ docker container stop paperless
 docker container stop paperless-postgres
 docker container stop paperless-redis
 docker system prune --all --force
-
 docker image pull ghcr.io/paperless-ngx/paperless-ngx
 docker image pull postgres
 docker image pull redis
-
 docker network create paperless
-
 docker run \
   --detach \
   --env POSTGRES_DB=paperless \
@@ -19,7 +16,6 @@ docker run \
   --restart unless-stopped \
   --volume paperless-postgres-data:/var/lib/postgresql/data \
   postgres
-
 docker run \
   --detach \
   --name paperless-redis \
@@ -27,7 +23,6 @@ docker run \
   --restart unless-stopped \
   --volume paperless-redis-data:/data \
   redis
-
 docker run \
   --detach \
   --env PAPERLESS_DBHOST=paperless-postgres \
