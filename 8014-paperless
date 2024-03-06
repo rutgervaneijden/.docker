@@ -35,7 +35,7 @@ docker run \
   --env PAPERLESS_REDIS=redis://paperless-redis \
   --name paperless \
   --network paperless \
-  --publish 8013:8000 \
+  --publish 8014:8000 \
   --restart unless-stopped \
   --volume paperless-data:/usr/src/paperless/data \
   --volume paperless-media:/usr/src/paperless/media \
