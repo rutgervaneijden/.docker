@@ -1,10 +1,13 @@
-docker pull ghcr.io/advplyr/audiobookshelf
-
-docker run -d \
- -p 13378:80 \
- -v </path/to/config>:/config \
- -v </path/to/metadata>:/metadata \
- -v </path/to/audiobooks>:/audiobooks \
- -v </path/to/podcasts>:/podcasts \
- --name audiobookshelf \
- ghcr.io/advplyr/audiobookshelf
+docker container stop audiobookshelf
+docker system prune --all --force
+docker image pull ghcr.io/advplyr/audiobookshelf
+docker run \
+  --detach \
+  --name audiobookshelf \
+  --publish 8013:80 \
+  --restart unless-stopped \
+  --volume audiobookshelf-config:/config \
+  --volume audiobookshelf-metadata:/metadata \
+  --volume audiobookshelf-audiobooks:/audiobooks \
+  --volume audiobookshelf-podcasts:/podcasts \
+  ghcr.io/advplyr/audiobookshelf
