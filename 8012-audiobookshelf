@@ -4,7 +4,7 @@ docker image pull ghcr.io/advplyr/audiobookshelf
 docker run \
   --detach \
   --name audiobookshelf \
-  --publish 8013:80 \
+  --publish 8012:80 \
   --restart unless-stopped \
   --volume audiobookshelf-config:/config \
   --volume audiobookshelf-metadata:/metadata \
