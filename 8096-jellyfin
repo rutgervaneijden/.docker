@@ -3,9 +3,9 @@ docker system prune --all --force
 docker image pull jellyfin/jellyfin
 docker run \
   --detach \
-  --mount type=bind,source=/media/hdd0/Mediatheek,target=/media,readonly \
+  --mount type=bind,source=/media/hdd0/Mediatheek,target=/media \
   --name jellyfin \
-  --publish 8010:8096 \
+  --network host \
   --restart unless-stopped \
   --volume jellyfin-cache:/cache \
   --volume jellyfin-config:/config \
